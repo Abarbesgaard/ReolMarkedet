@@ -1,0 +1,15 @@
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\bin\Debug\net6.0\ReolMarkedet.exe
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\bin\Debug\net6.0\ReolMarkedet.deps.json
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\bin\Debug\net6.0\ReolMarkedet.runtimeconfig.json
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\bin\Debug\net6.0\ReolMarkedet.dll
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\bin\Debug\net6.0\ReolMarkedet.pdb
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\ReolMarkedet.csproj.AssemblyReference.cache
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\ReolMarkedet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\ReolMarkedet.AssemblyInfoInputs.cache
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\ReolMarkedet.AssemblyInfo.cs
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\ReolMarkedet.csproj.CoreCompileInputs.cache
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\ReolMarkedet.dll
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\refint\ReolMarkedet.dll
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\ReolMarkedet.pdb
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\ReolMarkedet.genruntimeconfig.cache
+C:\Users\45217\Desktop\Datamatiker\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\ref\ReolMarkedet.dll
