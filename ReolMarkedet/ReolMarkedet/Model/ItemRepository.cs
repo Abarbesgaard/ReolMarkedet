@@ -6,24 +6,27 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.Model
 {
-    public class ItemRepository : IRepository
+    public class ItemRepository : IItemRepository
     {
         private List<Item> _items = new List<Item>();
-        private Item _item { get; }
+        private Item _item;
 
         
-        public void AddToList()
+        public void AddItemToList(Item item)
         {
-            _items.Add(_item);
+            _item = item;
+            _items.Add(item);
         }
 
-        public void RemoveFromList()
+        public void RemoveItemFromList(Item item)
         {
+            _item = item;
             _items.Remove(_item);
         }
 
-        public void UpdateList()
+        public void UpdateItemList(Item item)
         {
+            _item = item;
             string userInput = string.Empty;
             int itemID = 0;
             
