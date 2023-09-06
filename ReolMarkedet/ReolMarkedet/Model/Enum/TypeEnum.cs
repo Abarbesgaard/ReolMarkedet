@@ -8,7 +8,7 @@ namespace ReolMarkedet.Model.Enum
 {
     public enum TypeEnum
     {
-        Clothes,
-        Stuff
+        Tøj,
+        Ting
     }
 }

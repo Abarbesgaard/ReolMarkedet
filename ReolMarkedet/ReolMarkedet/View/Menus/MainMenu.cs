@@ -63,7 +63,8 @@ namespace ReolMarkedet.View.Menus
                     break;
                 case 3:
                     Console.Clear();
-                    //Overblik 
+                    OverblikMenu overblikMenu = new OverblikMenu();
+                    overblikMenu.DisplayOverblikMenu();
                     break;
 
                 case 4:
