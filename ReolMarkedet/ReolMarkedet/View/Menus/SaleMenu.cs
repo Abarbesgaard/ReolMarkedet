@@ -113,9 +113,9 @@ namespace ReolMarkedet.View.Menus
             {
                 case 1:
                     Console.Clear();
-                    //Vis nyeste salg
+                   
                     DisplaySaleMenu();
-                    // Add your submenu logic here.
+                    
                     break;
 
             }
