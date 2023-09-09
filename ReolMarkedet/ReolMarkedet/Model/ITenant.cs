@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.Model
 {
-    public interface IItemRepository
+    public interface ITenant
     {
-        void AddItemToList(Item item);
-        void RemoveItemFromList(Item item);
-        void UpdateItemList(Item item);
+        List<string> SelectDistinctTenant();
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 using ReolMarkedet.DB;
 using ReolMarkedet.Model.Enum;
 using System;
@@ -10,37 +9,13 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.Model
 {
-    public class ItemRepository : IItemRepository
+    public class TenantRepository : ITenant
     {
         public List<Item> Items = new List<Item>();
-
-        public void AddItemToList(Item item)
-        {  
-            Items.Add(item);
-        }
-
-        public void RemoveItemFromList(Item item)
-        {            
-            Items.Remove(item);
-        }
-
-        public void UpdateItemList(Item item)
-        {
-           
-            string userInput = string.Empty;
-            int itemID = 0;
-            
-            if (itemID == int.Parse(userInput)) 
-            { 
-            
-            }
-        }
-        
-
-        public void RetrieveAll()
+        public List<string> SelectDistinctTenant()
         {
             DatabaseConnection databaseConnection = new DatabaseConnection();
-            
+            List<string> uniqueTenants = new List<string>();
             using (SqlConnection connection = new SqlConnection(databaseConnection.DatabaseConnectionString()))
             {
                 connection.Open();
@@ -48,7 +23,7 @@ namespace ReolMarkedet.Model
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
-                    {    
+                    {
                         Item item = new Item
                         {
                             Id = Convert.ToInt32(reader["ItemId"].ToString()),
@@ -60,14 +35,11 @@ namespace ReolMarkedet.Model
                             Type = (TypeEnum)Enum.TypeEnum.Parse(typeof(TypeEnum), reader["ShelfType"].ToString()),
                             Discount = float.Parse(reader["Discount"].ToString()),
                         };
-
                         Items.Add(item);
                     }
                 }
             }
-
+            return uniqueTenants;
         }
-       
     }
-
 }
