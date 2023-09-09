@@ -18,24 +18,6 @@ namespace ReolMarkedet.Model
         public TypeEnum Type { get; set; }
         public float Discount { get; set; }
 
-        //public Item(
-        //    int id,
-        //    string tenant,
-        //    string barcode,
-        //    string name,
-        //    float price,
-        //    string place,
-        //    TypeEnum type,
-        //    float discount)
-        //{
-        //    this.Id = id;
-        //    this.Tenant = tenant;
-        //    this.Barcode = barcode;
-        //    this.Name = name;
-        //    this.Price = price;
-        //    this.Place = place;
-        //    this.Type = type;
-        //    this.Discount = discount;
-        //}
+        
     }
 }

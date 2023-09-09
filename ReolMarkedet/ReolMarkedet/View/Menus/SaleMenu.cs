@@ -53,10 +53,10 @@ namespace ReolMarkedet.View.Menus
             switch (option)
             {
                 case 1:
-                    //Console.Clear();
-                    //Vis nyeste salg
+                    Console.Clear();
+
                     ShowAllSales();
-                    // Add your submenu logic here.
+
                     break;
 
                 case 2:
@@ -73,6 +73,8 @@ namespace ReolMarkedet.View.Menus
 
                     break;
             }
+            
+            
         }
 
         public void ShowAllSales()
@@ -88,7 +90,6 @@ namespace ReolMarkedet.View.Menus
             var decorator = ">  \u001b[32m";
             ConsoleKeyInfo key;
             bool isSelected = false;
-
 
             while (!isSelected)
             {
@@ -113,13 +114,15 @@ namespace ReolMarkedet.View.Menus
             {
                 case 1:
                     Console.Clear();
-                   
+                    //Vis nyeste salg
                     DisplaySaleMenu();
-                    
+                    // Add your submenu logic here.
                     break;
 
             }
+
         }
+
         public void SelectDistinctTenant()
         {
             ItemRepository itemRepository = new ItemRepository();

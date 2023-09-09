@@ -22,4 +22,5 @@ namespace ReolMarkedet.Model
             Console.WriteLine(result);
         }
     }
+
 }
