@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33927.249
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReolMarkedet", "ReolMarkedet\ReolMarkedet.csproj", "{5180C6C9-F840-47ED-BFCD-1D1E0608A2A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReolMarkedet", "SystemForReolMarked\ReolMarkedet.csproj", "{6743DADB-2B85-463C-91C9-2F6C0BEE04F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsTilReolMarkedet", "UnitTestsTilReolMarkedet\UnitTestsTilReolMarkedet.csproj", "{D9A3EC0A-2DEE-4C26-B77C-3264385EE848}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5180C6C9-F840-47ED-BFCD-1D1E0608A2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5180C6C9-F840-47ED-BFCD-1D1E0608A2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5180C6C9-F840-47ED-BFCD-1D1E0608A2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5180C6C9-F840-47ED-BFCD-1D1E0608A2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6743DADB-2B85-463C-91C9-2F6C0BEE04F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6743DADB-2B85-463C-91C9-2F6C0BEE04F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6743DADB-2B85-463C-91C9-2F6C0BEE04F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6743DADB-2B85-463C-91C9-2F6C0BEE04F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9A3EC0A-2DEE-4C26-B77C-3264385EE848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A3EC0A-2DEE-4C26-B77C-3264385EE848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A3EC0A-2DEE-4C26-B77C-3264385EE848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A3EC0A-2DEE-4C26-B77C-3264385EE848}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

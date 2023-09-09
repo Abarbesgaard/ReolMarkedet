@@ -1,0 +1,15 @@
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\bin\Debug\net6.0\OldReolMarkedet.exe
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\bin\Debug\net6.0\OldReolMarkedet.deps.json
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\bin\Debug\net6.0\OldReolMarkedet.runtimeconfig.json
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\bin\Debug\net6.0\OldReolMarkedet.dll
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\bin\Debug\net6.0\OldReolMarkedet.pdb
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\OldReolMarkedet.csproj.AssemblyReference.cache
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\OldReolMarkedet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\OldReolMarkedet.AssemblyInfoInputs.cache
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\OldReolMarkedet.AssemblyInfo.cs
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\OldReolMarkedet.csproj.CoreCompileInputs.cache
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\OldReolMarkedet.dll
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\refint\OldReolMarkedet.dll
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\OldReolMarkedet.pdb
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\OldReolMarkedet.genruntimeconfig.cache
+C:\Users\ullar\OneDrive\Skrivebord\ReolmarkedGit\ReolMarkedet\ReolMarkedet\ReolMarkedet\obj\Debug\net6.0\ref\OldReolMarkedet.dll
