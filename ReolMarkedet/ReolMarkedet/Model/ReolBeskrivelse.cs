@@ -6,10 +6,5 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.Model
 {
-    public interface ISale
-    {
-        DateTime Date { get; set; }
-
-        void CreateSale();
-    }
+    public record ReolBeskrivelse(ETypeAfReol TypeAfReol, decimal Pris, bool Status, int AntalUdlejetUger);
 }

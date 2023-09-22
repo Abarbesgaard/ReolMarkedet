@@ -4,11 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReolMarkedet.Model.Enum
+namespace ReolMarkedet.Model
 {
-    public enum TypeEnum
-    {
-        Tøj,
-        Ting
-    }
+    public record Vare(string Stregkode, Rabat Rabat, VareBeskrivelse VareBeskrivelse);
+    
 }

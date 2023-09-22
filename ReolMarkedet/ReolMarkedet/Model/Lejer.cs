@@ -6,8 +6,5 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.Model
 {
-    public interface ITenant
-    {
-        List<string> SelectDistinctTenant();
-    }
+    public record Lejer(string Id, LejerBeskrivelse LejerBeskrivelse);
 }

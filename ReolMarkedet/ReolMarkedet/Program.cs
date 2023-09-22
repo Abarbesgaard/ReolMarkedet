@@ -1,6 +1,6 @@
-﻿using ReolMarkedet.Model;
-using ReolMarkedet.Model.Enum;
+﻿
 using ReolMarkedet.CTRL;
+using Microsoft.Identity.Client;
 
 namespace ReolMarkedet
 {
@@ -8,11 +8,14 @@ namespace ReolMarkedet
     {
         static void Main(string[] args)
         {
-
             Controller controller = new Controller();
+            //controller.EtEllerAndetMedVarer();
 
-            controller.Run();
+
+            controller.EtEllerAndetMedReoler();
+
             Console.ReadLine();
-        }
+           
+        }       
     }
 }
