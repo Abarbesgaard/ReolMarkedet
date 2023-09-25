@@ -1,4 +1,5 @@
-﻿using ReolMarkedet.Model;
+﻿using Reolmarkedet.View;
+using ReolMarkedet.Model;
 using ReolMarkedet.Model.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,35 +12,65 @@ namespace ReolMarkedet.CTRL
 {
     public class Controller
     {
-        IObjectInterface nyvare = new VareRepository();
-        IObjectInterface reol = new ReolRepository();
-
-        public void EtEllerAndetMedReoler()
+        public void run()
         {
-            reol.Tilføj(new Reol("123", new ReolBeskrivelse(ETypeAfReol.Gulvplads, 200m, true, 2), new Rabat(1.3m), new Lejer("1", new LejerBeskrivelse("Ingrid", "Snotgård", true, "Jydskebank", "oleHansen@gmail.com", "21762313"))));
-            string søgestuff = "123";
-            Reol reol1 = (Reol)reol.HentViaStregkode(søgestuff);
-            Console.WriteLine("Reolen er blevet udlejet af: " + reol1.Lejer.LejerBeskrivelse.ForNavn + " " + reol1.Lejer.LejerBeskrivelse.EfterNavn + " i " + reol1.ReolBeskrivelse.AntalUdlejetUger.ToString() + " uger");
-        }
-
-        public void EtEllerAndetMedVarer()
-        {
-            nyvare.Tilføj(new Vare("32024379654", new Rabat(1.15m), new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
-            nyvare.Tilføj(new Vare("32024379654", null, new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
-            nyvare.Tilføj(new Vare("32874379654", null, new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
-            nyvare.Tilføj(new Vare("32024379654", new Rabat(1.15m), new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
-            nyvare.Tilføj(new Vare("32024387654", null, new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
-            nyvare.Tilføj(new Vare("32784379654", null, new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
-            nyvare.Tilføj(new Vare("32024379678", new Rabat(1.15m), new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
-
-
-
-
-            string søgestuff = "32024379654";
-            Vare nyvare1 = (Vare)nyvare.HentViaStregkode(søgestuff);
-
-            Console.WriteLine(nyvare1.Stregkode.ToString());
             
+            HovedMenu hovedMenu = new HovedMenu();
+            hovedMenu.DisplayHovedMenu();
         }
+        IObjectInterface salg = new SalgRepository();
+
+        public IObjectInterface nyvarerepo = new VareRepository();
+
+        public void TilføjMangeReoler()
+        {
+            IObjectInterface reol = ReolRepository.GetInstance();
+            reol.Tilføj(new Reol("1", new ReolBeskrivelse(ETypeAfReol.Almindelig_Skab, 100m, false, 0), null, null)); 
+            reol.Tilføj(new Reol("2", new ReolBeskrivelse(ETypeAfReol.Almindelig_Skab, 100m, false, 0), null, null));
+            reol.Tilføj(new Reol("3", new ReolBeskrivelse(ETypeAfReol.Almindelig_Skab, 100m, false, 0), null, null));
+            reol.Tilføj(new Reol("4", new ReolBeskrivelse(ETypeAfReol.Almindelig_Skab, 100m, false, 0), null, null));
+            reol.Tilføj(new Reol("5", new ReolBeskrivelse(ETypeAfReol.Almindelig_Skab, 100m, false, 0), null, null));
+            reol.Tilføj(new Reol("6", new ReolBeskrivelse(ETypeAfReol.Almindelig_Skab, 100m, false, 0), null, null));
+            reol.Tilføj(new Reol("7", new ReolBeskrivelse(ETypeAfReol.Almindelig_Skab, 100m, false, 0), null, null));
+            reol.Tilføj(new Reol("8", new ReolBeskrivelse(ETypeAfReol.Almindelig_Skab, 100m, false, 0), null, null));
+            reol.Tilføj(new Reol("9", new ReolBeskrivelse(ETypeAfReol.Almindelig_Skab, 100m, false, 0), null, null));
+            reol.Tilføj(new Reol("10", new ReolBeskrivelse(ETypeAfReol.Almindelig_Skab, 100m, false, 0), null, null));
+
+        }
+
+        public void LavKvitering()
+        {
+            nyvarerepo.Tilføj(new Vare("32024379654", null, new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
+            nyvarerepo.Tilføj(new Vare("32874379654", null, new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
+            nyvarerepo.Tilføj(new Vare("32024379654", new Rabat(0.15m), new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
+            nyvarerepo.Tilføj(new Vare("32024387654", null, new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
+            nyvarerepo.Tilføj(new Vare("32784379654", null, new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
+            nyvarerepo.Tilføj(new Vare("32024379678", new Rabat(0.15m), new VareBeskrivelse("Bamse", EVareType.ting, 30.95m)));
+
+
+            Console.WriteLine("REOLMARKEDET");
+            Console.WriteLine("Addresse Information");
+
+            Console.WriteLine("\nbetjent af: Medarbejder ID");
+
+            Console.WriteLine("Handlen udført: " + DateTime.Now);
+            nyvarerepo.List();
+            
+
+            //foreach (Vare vare in nyvarerepo)
+            //{
+            //    Console.WriteLine($"{nyvarerepo.VareBeskrivelse.Name} {nyvarerepo.VareBeskrivelse.Pris.ToString()}");
+            //}
+
+            //Console.WriteLine(nyvare.VareBeskrivelse.Name + " " + nyvare.VareBeskrivelse.Pris
+
+
+
+
+
+
+        }
+
+        //Opret hylde
     }
 }

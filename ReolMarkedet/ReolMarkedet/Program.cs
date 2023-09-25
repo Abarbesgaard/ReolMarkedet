@@ -10,11 +10,9 @@ namespace ReolMarkedet
         {
             Controller controller = new Controller();
             //controller.EtEllerAndetMedVarer();
+            controller.TilføjMangeReoler();
+            controller.run();
 
-
-            controller.EtEllerAndetMedReoler();
-
-            Console.ReadLine();
            
         }       
     }

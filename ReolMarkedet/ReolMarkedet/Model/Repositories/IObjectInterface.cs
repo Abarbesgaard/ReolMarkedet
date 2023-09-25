@@ -15,5 +15,7 @@ namespace ReolMarkedet.Model.Repositories
 
         Object HentViaStregkode(Object obj);
 
+        void List();
+
     }
 }

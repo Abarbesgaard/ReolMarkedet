@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace ReolMarkedet.Model.Repositories
 {
     public class VareRepository : IObjectInterface
     {
-        private List<Vare> _varer = new List<Vare>();
+        public List<Vare> _varer = new List<Vare>();
         private Vare Vare { get; set; }
 
         public void Fjern(object obj)
@@ -47,6 +48,27 @@ namespace ReolMarkedet.Model.Repositories
                     return vare;
             }
             return null;
+        }
+
+        public void List()
+        {
+            decimal varensSamletPris = 0;
+            decimal rabat = 0;
+            string mellemrum = "     ";
+
+            foreach (var vare in _varer)
+            {
+                varensSamletPris = vare.VareBeskrivelse.Pris;
+                if (vare.Rabat != null)
+                {
+                    varensSamletPris = Math.Round((vare.VareBeskrivelse.Pris - vare.VareBeskrivelse.Pris * vare.Rabat.ProcentSats), 2);
+                    rabat = (vare.Rabat.ProcentSats * 100);
+                    Console.WriteLine($"{vare.VareBeskrivelse.Name}: {varensSamletPris}{mellemrum}rabat:  {rabat}%");
+                }
+                else
+                    Console.WriteLine($"{vare.VareBeskrivelse.Name}: {varensSamletPris}");
+            }
+
         }
     }
 }

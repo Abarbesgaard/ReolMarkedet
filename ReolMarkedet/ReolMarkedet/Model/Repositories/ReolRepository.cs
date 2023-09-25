@@ -9,6 +9,16 @@ namespace ReolMarkedet.Model.Repositories
     public class ReolRepository : IObjectInterface
     {
         private List<Reol> _reoler = new List<Reol>();
+
+        private static ReolRepository instance;
+        public static ReolRepository GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new ReolRepository();
+            }
+            return instance;
+        }
         public void Fjern(object obj)
         {
             throw new NotImplementedException();
@@ -23,6 +33,16 @@ namespace ReolMarkedet.Model.Repositories
                     return reol;
             }
             return null;
+        }
+
+        public void List()
+        {          
+            foreach (Reol reol in _reoler)
+            {
+                if (reol.Lejer == null)
+                    Console.WriteLine($"Id: {reol.Id} Type: {reol.ReolBeskrivelse.TypeAfReol}. Er ikke udlejet");
+                
+            }      
         }
 
         public void Opdater(object obj)
