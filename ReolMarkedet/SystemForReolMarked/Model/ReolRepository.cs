@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.Model
 {
-    public enum PlaceType
+    public class ReolRepository
     {
-        Shelf,
-        Floor,
-        SecuredShelf
     }
 }

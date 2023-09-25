@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReolMarkedet
+namespace ReolMarkedet.Model
 {
-    public enum ItemType
+    public class VareRepository
     {
-        Clothes,
-        Stuff
     }
 }

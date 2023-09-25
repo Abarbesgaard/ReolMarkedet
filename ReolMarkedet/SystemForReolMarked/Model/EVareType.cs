@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.Model
 {
-    public interface ISale
+    public enum EVareType
     {
-        DateTime dateTime { get; set; }
-
-        void Sale();
-        decimal CalculateTotalPrice();
+        Tøj, 
+        Ting
     }
 }
