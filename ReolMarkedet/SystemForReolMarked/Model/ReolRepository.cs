@@ -8,5 +8,9 @@ namespace ReolMarkedet.Model
 {
     public class ReolRepository
     {
+        public Reol HentReol(string stregKodeEllerId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

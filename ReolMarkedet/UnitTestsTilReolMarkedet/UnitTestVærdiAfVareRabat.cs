@@ -9,16 +9,13 @@ namespace ReolMarkedet.UnitTests
         public void TestVærdiAfVareRabat()
         {
             // Arrange
-          
-           
-            VareBeskrivelse vareBeskrivelse1 = new VareBeskrivelse("Bamse", EVareType.Ting, 20.0m);
-            Vare vare1 = new Vare("123", vareBeskrivelse1, 10);
-            Rabat rabat1 = new Rabat(vare1, 10, 0);
+           Vare vare1 = new Vare("123", "Bamse", EVareType.Ting, 20.0m, 10);
+
 
 
             // Act
 
-            decimal værdiAfRabat1 = rabat1.VærdiAfRabat();
+            decimal værdiAfRabat1 = vare1.VareRabat.BeregnVærdiAfVareRabat();
 
 
 

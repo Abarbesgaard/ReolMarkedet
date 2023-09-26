@@ -8,15 +8,36 @@ namespace ReolMarkedet.Model
 {
     public class Reol
     {
-        public string Id { get; set; }
+        public int ReolId { get; set; }
         public ReolBeskrivelse ReolBeskrivelse { get; set; }
-        public Rabat Rabat { get; set; }
-        private Lejer _lejer;
+        public Rabat UdlejningsRabat { get; private set; }
+        public static Lejer Lejer { get; private set; }
 
-        public Reol(string id, ReolBeskrivelse reolbeskrivelse, Rabat rabat = null, Lejer lejer = null)
+        public LejerRepository lejerRepo = new LejerRepository();
+
+        public Reol(int reolId, ETypeAfReol typeAfReol, bool status, decimal pris, int antalUdlejningsUger = 0, Rabat udlejningsRabat = null)
         {
-
+            ReolId = reolId;
+            ReolBeskrivelse = new ReolBeskrivelse(typeAfReol, status, pris, antalUdlejningsUger );
+            UdlejningsRabat = new Rabat(this, antalUdlejningsUger);
+            
         }
+
+        //public void TilføjLejer(string reolId, string lejerId) 
+        //{
+        //    List<Lejer> lejerList = lejerRepo.HentAlleLejere();
+        //    foreach(Lejer l in lejerList) 
+        //    {
+        //        if (l.LejerId == lejerId) 
+        //        {
+        //            Reol.Lejer = l;
+
+        //        }
+        //    }
+
+        //}
+        
+      
 
     }
 }

@@ -8,14 +8,20 @@ namespace ReolMarkedet.Model
 {
     public class ReolBeskrivelse
     {
-        public ETypeAfReol TypeAfReol { get; set; }
-        public decimal Pris { get; set; }
+        
+        public ETypeAfReol TypeAfReol { get; }
+        public decimal Pris { get; }
         public bool Status { get; set; }
-        public ReolBeskrivelse(ETypeAfReol typeafReol, decimal pris, bool status)
+        public int AntalUdlejningsUger { get; private set; }
+
+        public ReolBeskrivelse(ETypeAfReol typeafReol, bool status, decimal pris = 100.0m, int antalUdlejningsUger = 0)
         {
+         
             TypeAfReol = typeafReol;
-            Pris = pris;
             Status = status;
+            Pris = pris;
+            AntalUdlejningsUger = antalUdlejningsUger;
+            
         }
     }
 }

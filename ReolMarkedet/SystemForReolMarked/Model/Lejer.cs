@@ -8,12 +8,13 @@ namespace ReolMarkedet.Model
 {
     public class Lejer
     {
-        public string Id { get; set; }
+        public int LejerId { get; set; }
         public LejerBeskrivelse LejerBeskrivelse { get; set; }
-        public Lejer(string id, LejerBeskrivelse lejerBeskrivelse)
+
+        public Lejer(int lejerId, string fornavn, string efternavn, bool status, string bankoplysninger, string email, string tlf)
         {
-            Id = id;
-            LejerBeskrivelse = lejerBeskrivelse;
+            LejerId = lejerId;
+            LejerBeskrivelse = new LejerBeskrivelse(fornavn, efternavn, status, bankoplysninger, email, tlf);
         }
     }
 }

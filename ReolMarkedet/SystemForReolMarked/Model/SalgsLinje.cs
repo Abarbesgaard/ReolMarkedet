@@ -17,20 +17,20 @@ namespace ReolMarkedet.Model
         private List<Object> indkøbsListe = new List<Object>();
         private List<string> indkøbsListeLinjer = new List<string>();
 
-        private decimal salgsSum = 0;   
+        private decimal salgsSum = 0;
 
-        public SalgsLinje() {}
-    
-
+        public SalgsLinje() { }
 
 
-        public void SætObjectPåIndkøbsListe(string stregKodeEllerId) 
+
+
+        public void SætObjectPåIndkøbsListe(string stregKodeEllerId)
         {
-         
-            if (reolRepo.HentReol(stregKodeEllerId) != null) 
+
+            if (reolRepo.HentReol(stregKodeEllerId) != null)
             {
                 Reol reol = reolRepo.HentReol(stregKodeEllerId);
-                indkøbsListe.Add(reol);                                
+                indkøbsListe.Add(reol);
             }
             if (vareRepo.HentVare(stregKodeEllerId) != null)
             {
@@ -38,10 +38,10 @@ namespace ReolMarkedet.Model
                 indkøbsListe.Add((vare));
             }
             else { throw new Exception(); }
-            
+
         }
-        
-        public void GenererSalgsLinje() 
+
+        public void GenererSalgsLinje()
         {
             foreach (Object o in indkøbsListe)
             {
@@ -49,27 +49,30 @@ namespace ReolMarkedet.Model
                 {
                     Vare vare = (Vare)o;
                     decimal pris = vare.VareBeskrivelse.Pris;
-                    decimal rabat = vare.Rabat.VærdiAfRabat();
+                    decimal rabat = vare.VareRabat.BeregnVærdiAfVareRabat();
                     decimal samlet = pris - rabat;
-                    string vareLinjeTekst = $" {vare.VareBeskrivelse.Navn}, pris: {pris}, evt. rabat: {rabat}, ialt: {samlet} \n";
+                    string vareLinjeTekst = $" Vare: {vare.VareBeskrivelse.Navn}, pris: {pris}, evt. rabat: {rabat}, ialt: {samlet} \n";
                     indkøbsListeLinjer.Add(vareLinjeTekst);
                 }
                 if (o is Reol)
                 {
                     Reol reol = (Reol)o;
-                    decimal pris = reol.ReolBeskrivelse.Pris;
-                    decimal rabat = reol.Rabat.VærdiAfRabat();
-                    decimal samlet = pris - rabat;
-                    string vareLinjeTekst = $"Reol: {reol.Id}, pris: {pris}, evt. rabat: {rabat}, ialt: {samlet} ";
+                    decimal lejepris = reol.ReolBeskrivelse.AntalUdlejningsUger * 100.00m;
+                    int antalUger = reol.ReolBeskrivelse.AntalUdlejningsUger;
+                    decimal rabat = reol.UdlejningsRabat.BeregnVærdiAfReolRabat();
+                    decimal samlet = antalUger * lejepris - rabat;
+                    string vareLinjeTekst = $"Reol: {reol.ReolId}, antal uger: {reol.ReolBeskrivelse.AntalUdlejningsUger}, lejepris: {lejepris}, evt. rabat: {rabat}, ialt: {samlet} ";
                     indkøbsListeLinjer.Add((vareLinjeTekst));
 
                 }
-                else 
-                { 
-                    throw new Exception(); 
+                else
+                {
+                    throw new Exception();
                 }
             }
         }
+
+     
         public decimal BeregnSalgsSum()
         {
             foreach (Object o in indkøbsListe)
@@ -78,19 +81,20 @@ namespace ReolMarkedet.Model
                 {
                     Vare vare = (Vare)o;
                     decimal pris = vare.VareBeskrivelse.Pris;
-                    decimal rabat = vare.Rabat.VærdiAfRabat();
+                    decimal rabat = vare.VareRabat.BeregnVærdiAfVareRabat();
                     decimal samlet = pris - rabat;
                     salgsSum += samlet;
-                    
+
                 }
                 if (o is Reol)
                 {
                     Reol reol = (Reol)o;
-                    decimal pris = reol.ReolBeskrivelse.Pris;
-                    decimal rabat = reol.Rabat.VærdiAfRabat();
-                    decimal samlet = pris - rabat;
+                    decimal lejepris = reol.ReolBeskrivelse.AntalUdlejningsUger * 100.00m;
+                    int antalUger = reol.ReolBeskrivelse.AntalUdlejningsUger;
+                    decimal rabat = reol.UdlejningsRabat.BeregnVærdiAfReolRabat();
+                    decimal samlet = antalUger * lejepris - rabat;
                     salgsSum += samlet;
-                    
+
 
                 }
                 else
@@ -101,43 +105,13 @@ namespace ReolMarkedet.Model
             return salgsSum;
         }
 
-        //public decimal BeregnLejerFortjeneste(decimal salgsSum)
-        //{
-        //    decimal lejerFortjeneste = salgsSum * 0.85m;
-        //    return lejerFortjeneste;
-        //}
-
-        //public decimal BeregnKommisionAfSalg(decimal salgsSum) 
-        //{
-        //    decimal kommisionAfSalg = salgsSum * 0.15m;
-        //    return kommisionAfSalg;
-        //}
-
-
-
-
-
-
-
-        //public SalgsLinje(Vare vare) 
-        //{
-        //    Vare = vare;
-
-        //}
-
-        //public SalgsLinje(Reol reol) 
-        //{
-        //    Reol = reol;
-        //}
-
-        //public SalgsLinje(ServiceYdelse serviceYdelse) 
-        //{
-        //    ServiceYdelse=serviceYdelse;
-        //}
-
-        //public Vare HentVare(string stregkode) 
-        //{
-
-        //}
+        public void HentIndkøbsListeLinjer() 
+        {
+            foreach(string l in indkøbsListeLinjer) 
+            {
+                Console.WriteLine(l);
+            }
+        }
     }
 }
+
