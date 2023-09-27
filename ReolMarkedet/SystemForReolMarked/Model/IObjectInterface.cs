@@ -11,7 +11,7 @@ namespace ReolMarkedet.Model
 
        public void Tilføj(Object obj);
 
-        public List<Object> HentAlle(string idEllerStregkode);
+        public Object HentObject(int idEllerStregkode);
 
         public void Update(Object obj);
 

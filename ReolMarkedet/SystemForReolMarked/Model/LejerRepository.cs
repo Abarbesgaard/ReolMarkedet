@@ -5,13 +5,33 @@ namespace ReolMarkedet.Model
 {
     public class LejerRepository : IObjectInterface
     {
+        private static int lejerId;
+        private static string fornavn;
+        private static string efternavn;
+        private static string status;
+        private static string bankoplysninger;
+        private static string email;
+        private static string tlf;
+
         private string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_05;User Id=DB_F23_TEAM_05;Password=TEAMDB_DB_05;";
 
-        private List<Lejer> lejerList = new List<Lejer>();  
+        private List<Lejer> lejerList = new List<Lejer>();
+
+        Lejer lejer = new Lejer(fornavn, efternavn, status, bankoplysninger, email, tlf, lejerId);
+
+
+
 
 
         public LejerRepository()
         {
+        }
+
+
+        public Lejer OpretLejerFraBrugerInput(string fornavn, string efternavn, string status, string bankoplysninger, string email, string tlf, int lejerId = 0)
+        {
+            lejer = new Lejer(fornavn, efternavn, status, bankoplysninger, email, tlf, lejerId);
+            return lejer;
         }
 
         public List<object> HentAlle()
@@ -19,9 +39,37 @@ namespace ReolMarkedet.Model
             throw new NotImplementedException();
         }
 
-        public List<object> HentAlle(string idEllerStregkode)
+        public Object HentObject(int idEllerStregkode)
         {
-            throw new NotImplementedException();
+            Lejer valgtLejer = null;
+            using(SqlConnection connection = new SqlConnection(connectionString)) 
+            {
+                connection.Open();
+
+                string SELECTsql = $"SELECT * FROM TENANT WHERE TenantId = {idEllerStregkode}";
+
+                using (SqlCommand command = new SqlCommand(SELECTsql, connection)) 
+                {
+                    using(SqlDataReader reader = command.ExecuteReader()) 
+                    {
+                        while (reader.Read()) 
+                        {
+                            int lejerId = reader.GetInt32(0);
+                            string fornavn = reader.GetString(1);
+                            string efternavn = reader.GetString(2);
+                            string email = reader.GetString(3);
+                            string tlf = reader.GetString(4);
+                            string bankoplysninger = reader.GetString(5);
+                            string status = reader.GetString(6);
+
+                            Lejer valgtlejer = new Lejer(fornavn, efternavn, status, bankoplysninger, email, tlf, lejerId); 
+                            Console.WriteLine(valgtlejer.ToString());
+                            
+                            
+                        }                        
+                    }
+                }
+            } return valgtLejer;           
         }
 
         public void Slet(object obj)
@@ -29,22 +77,32 @@ namespace ReolMarkedet.Model
             throw new NotImplementedException();
         }
 
-        public void Tilføj(object obj)
+        public void Tilføj(Object obj )
         {
+            Lejer lejer = obj as Lejer;
             using(SqlConnection connection = new SqlConnection(connectionString)) 
             {
                 connection.Open();
 
                 string INSERTsql = "INSERT INTO Tenant (FirstName, LastName, Email, Phone, FinancialInformation, TenantStatus) VALUES (@FirstName, @LastName, @Email, @Phone, @FinancialInformation, @TenantStatus)";
 
+                string firstName = lejer.LejerBeskrivelse.Fornavn;
+                string lastName = lejer.LejerBeskrivelse.Efternavn;
+                string email = lejer.LejerBeskrivelse.Email;
+                string phone = lejer.LejerBeskrivelse.Tlf;
+                string financialInformation = lejer.LejerBeskrivelse.BankOplysninger;
+                string tenantStatus = lejer.LejerBeskrivelse.Status;
+                
+                
+                
                 using(SqlCommand INSERTcmd = new SqlCommand(INSERTsql, connection)) 
                 {
-                    INSERTcmd.Parameters.AddWithValue("@FirstName", "John");
-                    INSERTcmd.Parameters.AddWithValue("@LastName", "Johnsen");
-                    INSERTcmd.Parameters.AddWithValue("@Email", "JohnsEmail");
-                    INSERTcmd.Parameters.AddWithValue("@Phone", "JohnsPhone");
-                    INSERTcmd.Parameters.AddWithValue("@FinancialInformation", "JohnsFinance");
-                    INSERTcmd.Parameters.AddWithValue("@TenantStatus", "JohnsActive");
+                    INSERTcmd.Parameters.AddWithValue("@FirstName", $"{firstName}");
+                    INSERTcmd.Parameters.AddWithValue("@LastName", $"{lastName}");
+                    INSERTcmd.Parameters.AddWithValue("@Email", $"{email}");
+                    INSERTcmd.Parameters.AddWithValue("@Phone", $"{phone}");
+                    INSERTcmd.Parameters.AddWithValue("@FinancialInformation", $"{financialInformation}");
+                    INSERTcmd.Parameters.AddWithValue("@TenantStatus", $"{tenantStatus}");
 
                     int generatedTenatId = Convert.ToInt32(INSERTcmd.ExecuteScalar());
 
