@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.Model
 {
+    // Ikke implementerert ordenlig
     public class SalgsLinje
     {
-        public VareRepository VareRepository = new VareRepository();
-        public ReolRepository ReolRepository = new ReolRepository();
+        VareRepository VareRepository = new VareRepository();
+        ReolRepository ReolRepository = new ReolRepository();
         private List<ServiceYdelse> _serviceYdelse = new List<ServiceYdelse>();
         private List<Vare> _varer = new List<Vare>();
         private List<Reol> _reoler = new List<Reol>();

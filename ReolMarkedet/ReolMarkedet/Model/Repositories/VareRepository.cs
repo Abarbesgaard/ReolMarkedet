@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using ReolMarkedet.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +19,7 @@ namespace ReolMarkedet.Model.Repositories
             throw new NotImplementedException();
         }
 
-        public void Opdater(object obj)
+        public void Opdater(object obj, object obj2)
         {
             throw new NotImplementedException();
         }
@@ -29,6 +31,7 @@ namespace ReolMarkedet.Model.Repositories
 
         public void Tilføj(object obj)
         {
+            // Gammel implementering
             if (obj is Vare vare)
             {
                 _varer.Add(vare);
@@ -52,23 +55,40 @@ namespace ReolMarkedet.Model.Repositories
 
         public void List()
         {
-            decimal varensSamletPris = 0;
-            decimal rabat = 0;
-            string mellemrum = "     ";
-
-            foreach (var vare in _varer)
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            using (SqlConnection connection = new SqlConnection(databaseConnection.DatabaseConnectionString()))
             {
-                varensSamletPris = vare.VareBeskrivelse.Pris;
-                if (vare.Rabat != null)
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Items", connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    varensSamletPris = Math.Round((vare.VareBeskrivelse.Pris - vare.VareBeskrivelse.Pris * vare.Rabat.ProcentSats), 2);
-                    rabat = (vare.Rabat.ProcentSats * 100);
-                    Console.WriteLine($"{vare.VareBeskrivelse.Name}: {varensSamletPris}{mellemrum}rabat:  {rabat}%");
+                    string stregkode = (string)reader["ItemLineCode"];
+                    string vareType = (string)reader["ItemType"];
+                    string pris = (string)reader["Phone"];
+                    
+
+                    Console.WriteLine($"Vare: {stregkode}, {vareType}, Pris: {pris}");
+
                 }
-                else
-                    Console.WriteLine($"{vare.VareBeskrivelse.Name}: {varensSamletPris}");
             }
 
+        }
+
+        public string RetunerSeneste()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ListLedige()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ListLedige(object obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

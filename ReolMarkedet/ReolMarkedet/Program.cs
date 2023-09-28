@@ -1,6 +1,8 @@
 ﻿
 using ReolMarkedet.CTRL;
 using Microsoft.Identity.Client;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace ReolMarkedet
 {
@@ -9,11 +11,12 @@ namespace ReolMarkedet
         static void Main(string[] args)
         {
             Controller controller = new Controller();
-            //controller.EtEllerAndetMedVarer();
-            controller.TilføjMangeReoler();
+            
             controller.run();
 
            
-        }       
+        }
+       
     }
+    
 }

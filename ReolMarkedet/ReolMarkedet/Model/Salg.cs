@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.Model
 {
+    // Ikke implementerert ordenlig
     public record Salg(int Id, DateTime Dato, decimal Total, List<SalgsLinje> SalgsLinjer, decimal Kommission = 1.15m)
     {
         public void StartSalg()
@@ -18,10 +19,10 @@ namespace ReolMarkedet.Model
             foreach(var salgsLinje in SalgsLinjer)
             {
                 Vare vare = salgsLinje.HentVare();
-                //Reol reol = salgsLinje.HentReol();
+               
                 if (vare != null)
                 {
-                    // Tilføj varens pris til totalPris
+                   
                     totalPris += vare.VareBeskrivelse.Pris;
                 }
             }

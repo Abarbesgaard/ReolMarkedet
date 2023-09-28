@@ -10,6 +10,7 @@ namespace ReolMarkedet.View
 {
     public class SalgMenu
     {
+        // Ikke implementerert ordenlig
         public void DisplaySalgMenu()
         {
             Decorator decorate = new Decorator();

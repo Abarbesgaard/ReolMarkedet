@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.Model
 {
-    public record LejerBeskrivelse(string ForNavn, string EfterNavn, bool Status, string BankOplysninger, string Email, string Tlf);
+    public record LejerBeskrivelse(string EfterNavn,string ForNavn, bool Status, string BankOplysninger, string Email, string Tlf);
 }

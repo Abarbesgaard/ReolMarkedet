@@ -16,6 +16,7 @@ namespace ReolMarkedet.Model.Repositories
 
         public object HentViaStregkode(object obj)
         {
+            // Gammel implementering
             string søgeStregkode = obj.ToString();
             foreach (var salg in _salg)
             {
@@ -30,7 +31,22 @@ namespace ReolMarkedet.Model.Repositories
             throw new NotImplementedException();
         }
 
-        public void Opdater(object obj)
+        public void ListLedige()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ListLedige(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Opdater(object obj, object obj2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string RetunerSeneste()
         {
             throw new NotImplementedException();
         }
@@ -42,6 +58,7 @@ namespace ReolMarkedet.Model.Repositories
 
         public void Tilføj(object obj)
         {
+            // Gammel implementering
             if (obj is Salg salg)
             {
                 _salg.Add(salg);

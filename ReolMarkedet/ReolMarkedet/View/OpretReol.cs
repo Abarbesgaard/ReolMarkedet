@@ -12,6 +12,7 @@ namespace ReolMarkedet.View
     public class OpretReol
     {
         IObjectInterface _reoler = ReolRepository.GetInstance();
+        IObjectInterface _lejer = new LejerRepository();
         
 
         public void DisplayOpretReolMenu()
@@ -22,24 +23,26 @@ namespace ReolMarkedet.View
             Console.WriteLine("Opret Reol ");
             Console.WriteLine("hvilken reol vil du leje? ");
             _reoler.List();
-            //Liste over ledige reoler
-            Console.WriteLine("indtast nummer på reol");
-            Console.ReadLine();
-            // Er reolen ledig? try catch fange bogstaver og forkert tal
-            Console.WriteLine("Fornavn på lejer");
-            Console.ReadLine();
-            //intaster fornavn
-            Console.WriteLine("Efternavn på lejer");
-            Console.ReadLine();
-            //Indtaster efternavn
-            Console.WriteLine("mail");
-            Console.ReadLine();
-            //Indtaster Mail
-            Console.WriteLine("Telefon Nummer");
-            Console.ReadLine();
-            //Indtaster telefon nummer
-            // ER dette rigtigt?
-            //hvis nej slet alt
+            
+            Console.WriteLine("Indtast nummer på reol");
+
+            string userInput = Console.ReadLine();
+            
+            Console.WriteLine("Fornavn på lejer:");
+            string Firstname = Console.ReadLine();
+            
+            Console.WriteLine("Efternavn på lejer:");
+            string Lastname = Console.ReadLine();
+           
+            Console.WriteLine("Lejers Mail:");
+            string Email = Console.ReadLine();
+            
+            Console.WriteLine("Lejers Telefon Nummer:");
+            string Phone = Console.ReadLine();
+            
+            _lejer.Tilføj(new Lejer("1", new LejerBeskrivelse(Lastname, Firstname, true, "2123435", Email, Phone)));
+            
+            _reoler.Opdater(_lejer.RetunerSeneste(), userInput);
             Console.ReadLine();
 
             (int left, int top) = Console.GetCursorPosition();

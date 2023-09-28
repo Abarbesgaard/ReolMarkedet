@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReolMarkedet.Model.Repositories;
 using ReolMarkedet.View;
 
 
@@ -10,18 +11,20 @@ namespace Reolmarkedet.View
 {
     public class HovedMenu
     {
+        IObjectInterface objectInterface = new LejerRepository();
+        Decorator decorate = new Decorator();
         public void DisplayHovedMenu()
         {
-            Decorator decorate = new Decorator();
             decorate.banner();
 
             Console.WriteLine("\nMedarbjeder: RM001");
             Console.WriteLine();
 
+            Console.WriteLine("Aktive Lejere: ");
+            objectInterface.List();
 
 
-
-            int optionMin = 1; 
+            int optionMin = 1;
             int optionMax = 3;
             (int left, int top) = Console.GetCursorPosition();
             var option = 1;
@@ -33,7 +36,7 @@ namespace Reolmarkedet.View
                 Console.SetCursorPosition(left, top);
 
                 Console.WriteLine($"{(option == 1 ? decorate.Decorating() : "   ")}Start Salg\u001b[0m ");
-                Console.WriteLine($"{(option == 2 ? decorate.Decorating() : "   ")}Opret Reol\u001b[0m ");
+                Console.WriteLine($"{(option == 2 ? decorate.Decorating() : "   ")}Udlej Reol\u001b[0m ");
                 Console.WriteLine($"{(option == 3 ? decorate.Decorating() : "   ")}Opret Vare\u001b[0m ");
 
 

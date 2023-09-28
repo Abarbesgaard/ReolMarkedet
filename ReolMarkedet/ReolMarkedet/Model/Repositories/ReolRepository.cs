@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using ReolMarkedet.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +29,12 @@ namespace ReolMarkedet.Model.Repositories
 
         public object HentViaStregkode(object obj)
         {
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            using(SqlConnection connection = new SqlConnection(databaseConnection.DatabaseConnectionString()))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand($"SELECT PlaceId FROM Shelves where PlaceId = {(string)obj}", connection);
+            }
             string søgeStregkode = obj.ToString();
             foreach (var reol in _reoler)
             {
@@ -37,17 +46,33 @@ namespace ReolMarkedet.Model.Repositories
 
         public void List()
         {          
-            foreach (Reol reol in _reoler)
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            using (SqlConnection connection = new SqlConnection(databaseConnection.DatabaseConnectionString()))
             {
-                if (reol.Lejer == null)
-                    Console.WriteLine($"Id: {reol.Id} Type: {reol.ReolBeskrivelse.TypeAfReol}. Er ikke udlejet");
-                
-            }      
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Shelves WHERE TenantId IS NULL", connection);
+                SqlDataReader reader = command.ExecuteReader();
+            
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["PlaceId"]);
+                    string type = (string)reader["PlaceType"];
+                    Console.WriteLine($"Id: {id} Type: {type}. Er ikke udlejet");
+
+                }
+            }
+     
         }
 
-        public void Opdater(object obj)
+        public void Opdater(object obj, object obj2)
         {
-            throw new NotImplementedException();
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            using (SqlConnection connection = new SqlConnection(databaseConnection.DatabaseConnectionString()))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand($"UPDATE Shelves SET TenantId = {(string)obj} WHERE PlaceId = {(string)obj2}", connection);
+                command.ExecuteNonQuery();
+            }
         }
 
         public void Slet(object obj)
@@ -64,6 +89,33 @@ namespace ReolMarkedet.Model.Repositories
             else
             {
                 throw new ArgumentException("Objektet er ikke af typen Vare");
+            }
+        }
+
+        public string RetunerSeneste()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ListLedige(object obj)
+        {
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            using (SqlConnection connection = new SqlConnection(databaseConnection.DatabaseConnectionString()))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Shelves WHERE TenantId IS NOT NULL", connection);
+                
+                SqlDataReader reader = command.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["PlaceId"]);
+                    string type = (string)reader["PlaceType"];
+                    int lejer = Convert.ToInt32(reader["TenantId"]);
+                    Console.WriteLine($"Id: {id} Type: {type}. Er Udlejet til: ");
+
+                }
             }
         }
     }

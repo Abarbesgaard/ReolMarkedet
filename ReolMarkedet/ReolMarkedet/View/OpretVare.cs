@@ -1,4 +1,6 @@
 ﻿using Reolmarkedet.View;
+using ReolMarkedet.Model;
+using ReolMarkedet.Model.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +9,26 @@ using System.Threading.Tasks;
 
 namespace ReolMarkedet.View
 {
+    // Ikke implementerert ordenlig
     public class OpretVare
     {
+        IObjectInterface _reoler = ReolRepository.GetInstance();
+        IObjectInterface lejer = LejerRepository.GetInstance();
         public void DisplayOpretVareMenu()
         {
             Decorator decorate = new Decorator();
             decorate.banner();
-            //Opret vare på reol
-            //Hvis reol er udlejet
-            //Opret ny vare med alle informationer
-            // bekræft er det denne vare du ønsker oprettet?
-            // userconfirm
-            //ny mulighed for at oprette
+            //Vælg reol
+            Console.WriteLine("Vælg reol");
 
+            _reoler.ListLedige("1");
+           
 
+            string userChoice = Console.ReadLine();
 
+            _reoler.HentViaStregkode(userChoice);
+
+            
 
             int optionMin = 1;
             int optionMax = 1;

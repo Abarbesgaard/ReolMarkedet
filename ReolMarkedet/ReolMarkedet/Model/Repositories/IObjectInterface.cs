@@ -10,12 +10,15 @@ namespace ReolMarkedet.Model.Repositories
     {
         void Tilføj(Object obj);
         void Fjern(Object obj);
-        void Opdater(Object obj);
+        void Opdater(Object obj, Object obj2);
         void Slet(Object obj);
 
         Object HentViaStregkode(Object obj);
 
         void List();
 
+        string RetunerSeneste();
+
+        void ListLedige(Object obj);
     }
 }
