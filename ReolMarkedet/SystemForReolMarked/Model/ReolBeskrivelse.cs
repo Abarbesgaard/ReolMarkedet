@@ -11,16 +11,23 @@ namespace ReolMarkedet.Model
         
         public ETypeAfReol TypeAfReol { get; }
         public decimal Pris { get; }
-        public bool Status { get; set; }
-        public int AntalUdlejningsUger { get; private set; }
+        public string Status { get; set; } = "ledig";
 
-        public ReolBeskrivelse(ETypeAfReol typeafReol, bool status, decimal pris = 100.0m, int antalUdlejningsUger = 0)
+        private int antalUdlejningsUger;
+
+        public int AntalUdlejningsUger { get; set; } = 0;
+
+        
+        public DateTime FørsteLedigedato { get; set; } = new DateTime(2000, 1, 1, 00, 00, 0);
+
+        public ReolBeskrivelse(ETypeAfReol typeafReol, string status, decimal pris = 100.0m, DateTime førsteLedigedato, int antalUdlejningsUger)
         {
          
             TypeAfReol = typeafReol;
             Status = status;
             Pris = pris;
             AntalUdlejningsUger = antalUdlejningsUger;
+            FørsteLedigedato = førsteLedigedato;
             
         }
     }

@@ -23,17 +23,17 @@ namespace ReolMarkedet.Model
 
             SalgsNummer++;
             Dato = DateTime.Now;
-          
+
 
 
         }
 
-        public void UdskrivKvitterig() 
+        public void UdskrivKvitterig()
         {
-            
+
             Console.WriteLine($"SalgId: {SalgsNummer}");
             Console.WriteLine($"Dato: {Dato.ToString()}");
-            salgsLinje.HentIndkøbsListeLinjer();
+            //salgsLinje.HentIndkøbsListeLinjer();
         }
 
 

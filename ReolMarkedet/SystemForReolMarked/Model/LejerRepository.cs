@@ -5,6 +5,8 @@ namespace ReolMarkedet.Model
 {
     public class LejerRepository : IObjectInterface
     {
+        private string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_05;User Id=DB_F23_TEAM_05;Password=TEAMDB_DB_05;";
+
         private static int lejerId;
         private static string fornavn;
         private static string efternavn;
@@ -13,11 +15,11 @@ namespace ReolMarkedet.Model
         private static string email;
         private static string tlf;
 
-        private string connectionString = "Server=10.56.8.36;Database=DB_F23_TEAM_05;User Id=DB_F23_TEAM_05;Password=TEAMDB_DB_05;";
+        
 
         private List<Lejer> lejerList = new List<Lejer>();
 
-        Lejer lejer = new Lejer(fornavn, efternavn, status, bankoplysninger, email, tlf, lejerId);
+        Lejer lejer = new Lejer(fornavn, efternavn, status, bankoplysninger, email, tlf);
 
 
 
@@ -28,9 +30,9 @@ namespace ReolMarkedet.Model
         }
 
 
-        public Lejer OpretLejerFraBrugerInput(string fornavn, string efternavn, string status, string bankoplysninger, string email, string tlf, int lejerId = 0)
+        public Lejer OpretLejerFraBrugerInput(string fornavn, string efternavn, string status, string bankoplysninger, string email, string tlf)
         {
-            lejer = new Lejer(fornavn, efternavn, status, bankoplysninger, email, tlf, lejerId);
+            lejer = new Lejer(fornavn, efternavn, status, bankoplysninger, email, tlf);
             return lejer;
         }
 
@@ -62,7 +64,7 @@ namespace ReolMarkedet.Model
                             string bankoplysninger = reader.GetString(5);
                             string status = reader.GetString(6);
 
-                            Lejer valgtlejer = new Lejer(fornavn, efternavn, status, bankoplysninger, email, tlf, lejerId); 
+                            Lejer valgtlejer = new Lejer(fornavn, efternavn, status, bankoplysninger, email, tlf); 
                             Console.WriteLine(valgtlejer.ToString());
                             
                             
@@ -80,11 +82,13 @@ namespace ReolMarkedet.Model
         public void Tilføj(Object obj )
         {
             Lejer lejer = obj as Lejer;
+
             using(SqlConnection connection = new SqlConnection(connectionString)) 
             {
                 connection.Open();
 
-                string INSERTsql = "INSERT INTO Tenant (FirstName, LastName, Email, Phone, FinancialInformation, TenantStatus) VALUES (@FirstName, @LastName, @Email, @Phone, @FinancialInformation, @TenantStatus)";
+                string INSERTsql = "INSERT INTO Tenant (FirstName, LastName, Email, Phone, FinancialInformation, TenantStatus) VALUES (@FirstName, @LastName, @Email, @Phone, @FinancialInformation, @TenantStatus); " +
+                    "SELECT SCOPE_IDENTITY() as TenantId";
 
                 string firstName = lejer.LejerBeskrivelse.Fornavn;
                 string lastName = lejer.LejerBeskrivelse.Efternavn;
@@ -104,9 +108,14 @@ namespace ReolMarkedet.Model
                     INSERTcmd.Parameters.AddWithValue("@FinancialInformation", $"{financialInformation}");
                     INSERTcmd.Parameters.AddWithValue("@TenantStatus", $"{tenantStatus}");
 
-                    int generatedTenatId = Convert.ToInt32(INSERTcmd.ExecuteScalar());
+                    int? tenantId = null;
+                    var result = INSERTcmd.ExecuteScalar();
+                    if( result != null) 
+                    {
+                        tenantId = (int?)result;
+                        Console.WriteLine($"tenantId = {tenantId}");
+                    }
 
-                    Console.WriteLine(generatedTenatId);
                 }
             }
 

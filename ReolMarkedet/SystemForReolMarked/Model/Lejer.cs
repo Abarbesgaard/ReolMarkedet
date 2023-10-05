@@ -11,9 +11,8 @@ namespace ReolMarkedet.Model
         public int LejerId { get; set; }
         public LejerBeskrivelse LejerBeskrivelse { get; set; }
 
-        public Lejer(string fornavn, string efternavn, string status, string bankoplysninger, string email, string tlf, int lejerId)
+        public Lejer(string fornavn, string efternavn, string status, string bankoplysninger, string email, string tlf)
         {
-            LejerId = lejerId;
             LejerBeskrivelse = new LejerBeskrivelse(fornavn, efternavn, status, bankoplysninger, email, tlf);
         }
 

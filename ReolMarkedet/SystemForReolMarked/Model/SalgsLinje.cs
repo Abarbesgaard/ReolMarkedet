@@ -9,7 +9,7 @@ namespace ReolMarkedet.Model
 {
     public class SalgsLinje
     {
-
+        
 
         VareRepository vareRepo = new VareRepository();
         ReolRepository reolRepo = new ReolRepository();
@@ -21,23 +21,56 @@ namespace ReolMarkedet.Model
 
         public SalgsLinje() { }
 
-
-
-
-        public void SætObjectPåIndkøbsListe(string stregKodeEllerId)
+        public void VisledigeReoler() 
         {
+            DateTime dagsDato = DateTime.Now;
+            int dagsDatoInt = (int)dagsDato.DayOfWeek;
+            int antalDageTilFørsteSøndag = 7 - dagsDatoInt;
+            DateTime datoPåSøndag = dagsDato.AddDays(antalDageTilFørsteSøndag);
 
-            if (reolRepo.HentReol(stregKodeEllerId) != null)
+            ReolRepository reolRepo = new ReolRepository();
+
+
+            
+
+
+        }
+
+
+
+
+        public void SætObjectPåIndkøbsListe(int stregKodeEllerId)
+        {
+            try
             {
-                Reol reol = reolRepo.HentReol(stregKodeEllerId);
-                indkøbsListe.Add(reol);
+                if (reolRepo.HentObject(stregKodeEllerId) != null)
+                {
+                    Object reolObject = reolRepo.HentObject(stregKodeEllerId);
+                    if (reolObject is Reol)
+                    {
+                        Reol reol = (Reol)reolObject;
+                        indkøbsListe.Add(reol);
+                    }
+
+                }
+                if (vareRepo.HentObject(stregKodeEllerId) != null)
+                {
+                    Object vareObject = vareRepo.HentObject(stregKodeEllerId);
+                    if (vareObject is Vare)
+                    {
+                        Vare vare = (Vare)vareObject;
+                        indkøbsListe.Add((vare));
+                    }
+
+                }
+                else { throw new Exception("Salgsobject ikke fundet i databasen"); }
             }
-            if (vareRepo.HentVare(stregKodeEllerId) != null)
+
+            catch (Exception e) 
             {
-                Vare vare = vareRepo.HentVare(stregKodeEllerId);
-                indkøbsListe.Add((vare));
+                Console.WriteLine($"{e.Message}");
             }
-            else { throw new Exception(); }
+            
 
         }
 
@@ -57,7 +90,7 @@ namespace ReolMarkedet.Model
                 if (o is Reol)
                 {
                     Reol reol = (Reol)o;
-                    decimal lejepris = reol.ReolBeskrivelse.AntalUdlejningsUger * 100.00m;
+                    decimal lejepris = reol.ReolBeskrivelse.AntalUdlejningsUger * reol.ReolBeskrivelse.Pris;
                     int antalUger = reol.ReolBeskrivelse.AntalUdlejningsUger;
                     decimal rabat = reol.UdlejningsRabat.BeregnVærdiAfReolRabat();
                     decimal samlet = antalUger * lejepris - rabat;
@@ -72,7 +105,7 @@ namespace ReolMarkedet.Model
             }
         }
 
-     
+
         public decimal BeregnSalgsSum()
         {
             foreach (Object o in indkøbsListe)
@@ -105,9 +138,9 @@ namespace ReolMarkedet.Model
             return salgsSum;
         }
 
-        public void HentIndkøbsListeLinjer() 
+        public void UdskrivIndkøbsListeLinjer()
         {
-            foreach(string l in indkøbsListeLinjer) 
+            foreach (string l in indkøbsListeLinjer)
             {
                 Console.WriteLine(l);
             }

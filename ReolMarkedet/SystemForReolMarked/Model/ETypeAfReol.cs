@@ -13,4 +13,8 @@ namespace ReolMarkedet.Model
         GulvPlads,
         AlmindeligReol
     }
+
+    
+
+
 }

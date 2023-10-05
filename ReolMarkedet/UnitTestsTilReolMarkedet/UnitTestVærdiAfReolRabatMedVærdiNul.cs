@@ -10,7 +10,7 @@ namespace ReolMarkedet.UnitTests
         {
             // Arrange
 
-            Reol reol1 = new Reol(2, ETypeAfReol.AflåstGlasSkabHylde, true, 100.0m, 2);
+            Reol reol1 = new Reol(2, ETypeAfReol.AflåstGlasSkabHylde, "true", 100.0m, 2);
 
 
 
